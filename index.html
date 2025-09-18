@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог товаров - Дополнение к Авито</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1><i class="fas fa-store"></i> Каталог товаров</h1>
+                    <p>Дополнение к Авито</p>
+                </div>
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Поиск по артикулу или названию...">
+                    <button id="searchBtn"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="navigation">
+        <div class="container">
+            <ul class="nav-menu">
+                <li><a href="#" class="nav-link active" data-category="all"><i class="fas fa-th-large"></i> Все товары</a></li>
+                <li><a href="#" class="nav-link" data-category="wheels"><i class="fas fa-circle"></i> Диски</a></li>
+                <li><a href="#" class="nav-link" data-category="tires"><i class="fas fa-car"></i> Резина</a></li>
+                <li><a href="#" class="nav-link" data-category="military"><i class="fas fa-shield-alt"></i> Военная форма</a></li>
+                <li><a href="#" class="nav-link" data-category="tools"><i class="fas fa-tools"></i> Электроинструмент</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main">
+        <div class="container">
+            <div class="filters-section">
+                <div class="category-filters">
+                    <div class="filter-group" id="tiresFilters" style="display: none;">
+                        <h3>Тип резины:</h3>
+                        <label><input type="checkbox" value="summer"> Летняя</label>
+                        <label><input type="checkbox" value="winter"> Зимняя</label>
+                        <label><input type="checkbox" value="offroad"> Внедорожная</label>
+                        <label><input type="checkbox" value="sets"> Комплекты (диски + резина)</label>
+                    </div>
+                    <div class="filter-group" id="wheelsFilters" style="display: none;">
+                        <h3>Тип дисков:</h3>
+                        <label><input type="checkbox" value="summer-stamped"> Летние штампованные</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="products-section">
+                <div class="section-header">
+                    <h2 id="sectionTitle">Все товары</h2>
+                    <div class="view-toggle">
+                        <button class="view-btn active" data-view="grid"><i class="fas fa-th"></i></button>
+                        <button class="view-btn" data-view="list"><i class="fas fa-list"></i></button>
+                    </div>
+                </div>
+                
+                <div class="products-grid" id="productsContainer">
+                    <!-- Товары будут добавлены через JavaScript -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Каталог товаров. Дополнение к маркетплейсу Авито.</p>
+        </div>
+    </footer>
+
+    <!-- Модальное окно для детального просмотра товара -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Детали товара</h2>
+                <span class="close" id="closeModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="modal-product-info">
+                    <div class="modal-product-image">
+                        <i id="modalIcon" class="fas fa-box"></i>
+                    </div>
+                    <div class="modal-product-details">
+                        <h3 id="modalProductTitle">Название товара</h3>
+                        <div class="modal-info-grid">
+                            <div class="info-item">
+                                <label>Артикул:</label>
+                                <span id="modalArticle">-</span>
+                                <button class="btn-copy" onclick="copyArticle(document.getElementById('modalArticle').textContent)">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <div class="info-item">
+                                <label>Категория:</label>
+                                <span id="modalCategory">-</span>
+                            </div>
+                            <div class="info-item">
+                                <label>Цена:</label>
+                                <span id="modalPrice" class="price-highlight">-</span>
+                            </div>
+                        </div>
+                        <div class="modal-description">
+                            <label>Описание:</label>
+                            <p id="modalDescription">-</p>
+                        </div>
+                        <div class="modal-actions">
+                            <button class="btn btn-primary" id="modalAvitoBtn">
+                                <i class="fas fa-external-link-alt"></i> Открыть на Авито
+                            </button>
+                            <button class="btn btn-secondary" onclick="copyArticle(document.getElementById('modalArticle').textContent)">
+                                <i class="fas fa-copy"></i> Копировать артикул
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
